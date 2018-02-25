@@ -4,8 +4,7 @@
 //
 
 using System;
-using System.Collections.Generic;
-using Windows.Devices.Adc.Provider;
+using System.Runtime.CompilerServices;
 
 namespace Windows.Devices.Adc
 {
@@ -14,13 +13,30 @@ namespace Windows.Devices.Adc
     /// </summary>
     public sealed class AdcController : IAdcController
     {
+        private readonly int _deviceId;
+        private AdcChannelMode _channelMode;
+        private string _adcController;
+
+
+        internal AdcController(string adcController)
+        {
+            // Remove the "ADC" part of the string "ADCxx" to get the "xx" value
+            _deviceId = (Convert.ToInt32(adcController.Substring(3)));    
+            _adcController = adcController;
+        }
+
         /// <summary>
         /// The number of channels available on the ADC controller.
         /// </summary>
         /// <value>
         /// Number of channels.
         /// </value>
-        public int ChannelCount { get; }
+        public int ChannelCount {
+            get
+            {
+                return NativeGetChannelCount();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the channel mode for the ADC controller.
@@ -28,7 +44,16 @@ namespace Windows.Devices.Adc
         /// <value>
         /// The ADC channel mode.
         /// </value>
-        public AdcChannelMode ChannelMode { get; set; }
+        public AdcChannelMode ChannelMode {
+            get
+            {
+                return _channelMode;
+            }
+            set
+            {
+                _channelMode = value;
+            }
+        }
 
         /// <summary>
         /// Gets the maximum value that the controller can report.
@@ -36,7 +61,13 @@ namespace Windows.Devices.Adc
         /// <value>
         /// The maximum value.
         /// </value>
-        public int MaxValue { get; }
+        public int MaxValue {
+            get
+            {
+                return NativeGetMaxValue();
+            }
+            
+        }
 
         /// <summary>
         /// The minimum value the controller can report.
@@ -44,7 +75,12 @@ namespace Windows.Devices.Adc
         /// <value>
         /// The minimum value.
         /// </value>
-        public int MinValue { get; }
+        public int MinValue {
+            get
+            {
+                return NativeGetMinValue();
+            }
+        }
 
         /// <summary>
         /// Gets the resolution of the controller as number of bits it has. For example, if we have a 10-bit ADC, that means it can detect 1024 (2^10) discrete levels.
@@ -52,31 +88,39 @@ namespace Windows.Devices.Adc
         /// <value>
         /// The number of bits the ADC controller has.
         /// </value>
-        public int ResolutionInBits { get; }
-
-        /// <summary>
-        /// Gets all the controllers that are connected to the system asynchronously.
-        /// </summary>
-        /// <param name="provider">
-        /// The ADC provider for the controllers on the system.
-        /// </param>
-        /// <returns>
-        /// When the method completes successfully, it returns a list of values that represent the controllers available on the system.
-        /// </returns>
-        public static IReadOnlyList<AdcController> GetControllers(IAdcProvider provider)
-        {
-            throw new NotImplementedException();
+        public int ResolutionInBits {
+            get
+            {
+                return NativeGetResolutionInBits();
+            }
         }
 
         /// <summary>
-        /// Gets the default ADC controller on the system.
+        /// Initializes a ADC controller instance based on the given DeviceInformation ID.
+        /// </summary>
+        /// <param name="deviceId">
+        /// The acquired DeviceInformation ID.
+        /// </param>
+        /// <returns>
+        /// AdcController
+        /// </returns>       
+        public static AdcController FromID(string deviceId)
+        {
+            return new AdcController(deviceId);
+        }
+
+        /// <summary>
+        /// Gets the default ADC controller on the system. 
         /// </summary>
         /// <returns>
         /// The default ADC controller on the system, or null if the system has no ADC controller.
         /// </returns>
         public static AdcController GetDefault()
         {
-            throw new NotImplementedException();
+            string controllers = GetDeviceSelector();
+            string[] devices = controllers.Split(',');
+
+            return new AdcController(devices[0]);
         }
 
         /// <summary>
@@ -90,7 +134,7 @@ namespace Windows.Devices.Adc
         /// </returns>
         public bool IsChannelModeSupported(AdcChannelMode channelMode)
         {
-            throw new NotImplementedException();
+            return NativeIsChannelModeSupported((int)channelMode);
         }
 
         /// <summary>
@@ -104,7 +148,39 @@ namespace Windows.Devices.Adc
         /// </returns>
         public AdcChannel OpenChannel(Int32 channelNumber)
         {
-            throw new NotImplementedException();
+            NativeOpenChannel(_deviceId, channelNumber);
+
+            return new AdcChannel(this, _deviceId, channelNumber);
         }
+
+        #region Native Calls
+ 
+        /// <summary>
+        /// Retrieves an string of all the ADC controllers on the system. 
+        /// </summary>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern string GetDeviceSelector();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern void NativeOpenChannel(Int32 deviceId ,Int32 channelNumber);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern int NativeGetChannelCount();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern int NativeGetMaxValue();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern int NativeGetMinValue();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern bool NativeIsChannelModeSupported(int mode);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern int NativeGetResolutionInBits();
+        
+        #endregion
+
     }
 }

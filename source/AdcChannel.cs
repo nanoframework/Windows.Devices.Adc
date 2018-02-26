@@ -4,6 +4,7 @@
 //
 
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Windows.Devices.Adc
 {
@@ -12,31 +13,37 @@ namespace Windows.Devices.Adc
     /// </summary>
     public sealed class AdcChannel : IAdcChannel, IDisposable
     {
+        private readonly int  _channelNumber;
+        private AdcController _adcController;
+        private int           _deviceId;
+
+               // this is used as the lock object 
+        // a lock is required because multiple threads can access the GpioPin
+        private object _syncLock = new object();
+
+        internal AdcChannel(AdcController controller, int deviveId, int channelNumber)
+        {
+            _adcController = controller;
+            _deviceId = deviveId;
+            _channelNumber = channelNumber;
+        }
+
+     
+        
         /// <summary>
         /// Gets the ADC controller for this channel.
         /// </summary>
         /// <value>
         /// The ADC controller.
         /// </value>
-        public AdcController Controller { get; }
-
-        /// <summary>
-        /// Closes the connection on this channel, making it available to be opened by others.
-        /// </summary>
-        public void Close()
-        {
-            // This member is not implemented in C#
-            throw new NotImplementedException();
+       public AdcController Controller {
+            get
+            {
+                return _adcController;
+            }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
+ 
         /// <summary>
         /// Reads the value as a percentage of the max value possible for this controller.
         /// </summary>
@@ -45,7 +52,7 @@ namespace Windows.Devices.Adc
         /// </returns>
         public double ReadRatio()
         {
-            throw new NotImplementedException();
+            return (double)ReadValue() / (double)_adcController.MaxValue;
         }
 
         /// <summary>
@@ -56,7 +63,75 @@ namespace Windows.Devices.Adc
         /// </returns>
         public int ReadValue()
         {
-            throw new NotImplementedException();
+            lock (_syncLock)
+            {
+                // check if pin has been disposed
+                if (_disposedValue) { throw new ObjectDisposedException(); }
+
+                return NativeReadValue(_deviceId, _channelNumber);
+            }
         }
+
+        private void ThowIfDisposed()
+        {
+            // check if pin has been disposed
+            if (_disposedValue)
+            {
+                throw new ObjectDisposedException();
+            }
+        }
+
+        #region IDisposable Support
+
+        private bool _disposedValue;
+
+        private void Dispose(bool disposing)
+        {
+            if (_adcController != null)
+            {
+                if (disposing)
+                {
+                    NativeDisposeChannel(_channelNumber);
+                    _adcController = null;
+
+                }
+
+                _disposedValue = true;
+            }
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            lock (_syncLock)
+            {
+                if (!_disposedValue)
+                {
+                    Dispose(true);
+                    GC.SuppressFinalize(this);
+                }
+            }
+        }
+
+        #pragma warning disable 1591
+        ~AdcChannel()
+        {
+            Dispose(false);
+        }
+
+        #endregion
+
+        #region Native Calls
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern int NativeReadValue(int deviceId, int channelNumber);
+
+         [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern void NativeDisposeChannel(int channelNumber);
+
+        #endregion
+
     }
 }

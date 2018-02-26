@@ -11,12 +11,12 @@ namespace Windows.Devices.Adc
     public enum AdcChannelMode
     {
         /// <summary>
-        /// Difference between two pins.
-        /// </summary>
-        Differential,
-        /// <summary>
         /// Simple value of a particular pin.
         /// </summary>
-        SingleEnded
+        SingleEnded = 0,
+        /// <summary>
+        /// Difference between two pins.
+        /// </summary>
+        Differential
     }
 }

@@ -4,6 +4,7 @@
 //
 
 using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 
 namespace Windows.Devices.Adc
@@ -15,14 +16,32 @@ namespace Windows.Devices.Adc
     {
         private readonly int _deviceId;
         private AdcChannelMode _channelMode;
-        private string _adcController;
+
+        // need to store the ADC controllers that are open
+        internal static Hashtable s_deviceCollection = new Hashtable();
 
 
         internal AdcController(string adcController)
         {
-            // Remove the "ADC" part of the string "ADCxx" to get the "xx" value
-            _deviceId = (Convert.ToInt32(adcController.Substring(3)));    
-            _adcController = adcController;
+            // check if this device is already opened
+            if (!s_deviceCollection.Contains(adcController))
+            {
+                // the ADC id is an ASCII string with the format 'ADCn'
+                // need to grab 'n' from the string and convert that to the integer value from the ASCII code (do this by subtracting 48 from the char value)
+                _deviceId = adcController[3] - 48;
+
+                // call native init to allow HAL/PAL inits related with ADC hardware
+                // this is also used to check if the requested ADC actually exists
+                NativeInit();
+
+                // add ADC controller to collection
+                s_deviceCollection.Add(adcController, this);
+            }
+            else
+            {
+                // this controller already exists: throw an exception
+                throw new ArgumentException();
+            }
         }
 
         /// <summary>
@@ -102,8 +121,11 @@ namespace Windows.Devices.Adc
         /// The acquired DeviceInformation ID.
         /// </param>
         /// <returns>
-        /// AdcController
-        /// </returns>       
+        /// <see cref="AdcController"/>
+        /// </returns>
+        /// <remarks>
+        /// This method is specific to nanoFramework. There is no equivalent method in the UWP API.
+        /// </remarks>
         public static AdcController FromID(string deviceId)
         {
             return new AdcController(deviceId);
@@ -120,7 +142,19 @@ namespace Windows.Devices.Adc
             string controllers = GetDeviceSelector();
             string[] devices = controllers.Split(',');
 
-            return new AdcController(devices[0]);
+            if(devices.Length > 0)
+            {
+                if (s_deviceCollection.Contains(devices[0]))
+                {
+                    // this is already open
+                    return (AdcController)s_deviceCollection[devices[0]];
+                }
+
+                return new AdcController(devices[0]);
+            }
+
+            // the system has no ADC controller 
+            return null;
         }
 
         /// <summary>
@@ -148,9 +182,9 @@ namespace Windows.Devices.Adc
         /// </returns>
         public AdcChannel OpenChannel(Int32 channelNumber)
         {
-            NativeOpenChannel(_deviceId, channelNumber);
+            NativeOpenChannel(channelNumber);
 
-            return new AdcChannel(this, _deviceId, channelNumber);
+            return new AdcChannel(this, channelNumber);
         }
 
         #region Native Calls
@@ -163,7 +197,7 @@ namespace Windows.Devices.Adc
         public static extern string GetDeviceSelector();
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern void NativeOpenChannel(Int32 deviceId ,Int32 channelNumber);
+        private extern void NativeOpenChannel(Int32 channelNumber);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         private extern int NativeGetChannelCount();
@@ -179,8 +213,10 @@ namespace Windows.Devices.Adc
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         private extern int NativeGetResolutionInBits();
-        
-        #endregion
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern void NativeInit();
+
+        #endregion
     }
 }

@@ -15,21 +15,17 @@ namespace Windows.Devices.Adc
     {
         private readonly int  _channelNumber;
         private AdcController _adcController;
-        private int           _deviceId;
 
                // this is used as the lock object 
         // a lock is required because multiple threads can access the GpioPin
         private object _syncLock = new object();
 
-        internal AdcChannel(AdcController controller, int deviveId, int channelNumber)
+        internal AdcChannel(AdcController controller, int channelNumber)
         {
             _adcController = controller;
-            _deviceId = deviveId;
             _channelNumber = channelNumber;
         }
 
-     
-        
         /// <summary>
         /// Gets the ADC controller for this channel.
         /// </summary>
@@ -68,7 +64,7 @@ namespace Windows.Devices.Adc
                 // check if pin has been disposed
                 if (_disposedValue) { throw new ObjectDisposedException(); }
 
-                return NativeReadValue(_deviceId, _channelNumber);
+                return NativeReadValue(_channelNumber);
             }
         }
 
@@ -126,9 +122,9 @@ namespace Windows.Devices.Adc
         #region Native Calls
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern int NativeReadValue(int deviceId, int channelNumber);
+        private extern int NativeReadValue(int channelNumber);
 
-         [MethodImpl(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         private extern void NativeDisposeChannel(int channelNumber);
 
         #endregion

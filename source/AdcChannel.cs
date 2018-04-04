@@ -16,8 +16,8 @@ namespace Windows.Devices.Adc
         private readonly int  _channelNumber;
         private AdcController _adcController;
 
-               // this is used as the lock object 
-        // a lock is required because multiple threads can access the GpioPin
+        // this is used as the lock object 
+        // a lock is required because multiple threads can access the AdcChannel
         private object _syncLock = new object();
 
         internal AdcChannel(AdcController controller, int channelNumber)
@@ -32,7 +32,8 @@ namespace Windows.Devices.Adc
         /// <value>
         /// The ADC controller.
         /// </value>
-       public AdcController Controller {
+       public AdcController Controller
+       {
             get
             {
                 return _adcController;
@@ -48,7 +49,7 @@ namespace Windows.Devices.Adc
         /// </returns>
         public double ReadRatio()
         {
-            return (double)ReadValue() / (double)_adcController.MaxValue;
+            return ReadValue() / (double)_adcController.MaxValue;
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace Windows.Devices.Adc
                 // check if pin has been disposed
                 if (_disposedValue) { throw new ObjectDisposedException(); }
 
-                return NativeReadValue(_channelNumber);
+                return NativeReadValue();
             }
         }
 
@@ -87,7 +88,7 @@ namespace Windows.Devices.Adc
             {
                 if (disposing)
                 {
-                    NativeDisposeChannel(_channelNumber);
+                    NativeDisposeChannel();
                     _adcController = null;
 
                 }
@@ -116,16 +117,17 @@ namespace Windows.Devices.Adc
         {
             Dispose(false);
         }
+        #pragma warning restore 1591
 
         #endregion
 
         #region Native Calls
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern int NativeReadValue(int channelNumber);
+        private extern int NativeReadValue();
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern void NativeDisposeChannel(int channelNumber);
+        private extern void NativeDisposeChannel();
 
         #endregion
 

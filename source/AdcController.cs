@@ -20,7 +20,6 @@ namespace Windows.Devices.Adc
         // need to store the ADC controllers that are open
         internal static Hashtable s_deviceCollection = new Hashtable();
 
-
         internal AdcController(string adcController)
         {
             // check if this device is already opened
@@ -112,23 +111,6 @@ namespace Windows.Devices.Adc
             {
                 return NativeGetResolutionInBits();
             }
-        }
-
-        /// <summary>
-        /// Initializes a ADC controller instance based on the given DeviceInformation ID.
-        /// </summary>
-        /// <param name="deviceId">
-        /// The acquired DeviceInformation ID.
-        /// </param>
-        /// <returns>
-        /// <see cref="AdcController"/>
-        /// </returns>
-        /// <remarks>
-        /// This method is specific to nanoFramework. There is no equivalent method in the UWP API.
-        /// </remarks>
-        public static AdcController FromID(string deviceId)
-        {
-            return new AdcController(deviceId);
         }
 
         /// <summary>

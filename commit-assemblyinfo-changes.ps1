@@ -28,7 +28,7 @@ else
     $newVersion = "{ $newVersion }"
     
     $versionRegex = "\{\s*\d+\,\s*\d+\,\s*\d+\,\s*\d+\s*}"
-    $assemblyFiles = (Get-ChildItem ".\nanoCLR\Windows.Devices.Adc\win_dev_adc_native.cpp" -Recurse)
+    $assemblyFiles = (Get-ChildItem -Path ".\*" -Include "win_dev_adc_native.cpp" -Recurse)
 
     foreach($file in $assemblyFiles)
     {

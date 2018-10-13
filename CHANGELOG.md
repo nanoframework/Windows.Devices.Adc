@@ -11,6 +11,7 @@
 
 **Documentation and other chores:**
 
+- Bumps nanoFramework.CoreLibrary from 1.0.1-preview127 to 1.0.1-preview134 [\#20](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/20)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview123 to 1.0.1-preview127 [\#19](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/19)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview118 to 1.0.1-preview123 [\#18](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/18)
 - 📦 Bumps nanoFramework.CoreLibrary from 1.0.1-preview116 to 1.0.1-preview118 [\#17](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/17)

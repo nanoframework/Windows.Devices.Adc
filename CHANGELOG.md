@@ -1,7 +1,6 @@
 # Change Log
 
-## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/HEAD)
-
+## [v1.0.0](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.0.0) (2018-10-17)
 **Implemented enhancements:**
 
 - Add strong name key [\#12](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/12)
@@ -11,6 +10,8 @@
 
 **Documentation and other chores:**
 
+- Merge 'develop' for Release 1.0.0 [\#23](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/23)
+- Bumps nanoFramework.CoreLibrary from 1.0.1-preview134 to 1.0.4 [\#22](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/22)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview127 to 1.0.1-preview134 [\#20](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/20)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview123 to 1.0.1-preview127 [\#19](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/19)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview118 to 1.0.1-preview123 [\#18](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/18)

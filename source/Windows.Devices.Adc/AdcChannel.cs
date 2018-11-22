@@ -13,12 +13,19 @@ namespace Windows.Devices.Adc
     /// </summary>
     public sealed class AdcChannel : IAdcChannel, IDisposable
     {
+        // this is used as the lock object 
+        // a lock is required because multiple threads can access the channel
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private readonly object _syncLock = new object();
+
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private readonly int  _channelNumber;
+
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private AdcController _adcController;
 
-        // this is used as the lock object 
-        // a lock is required because multiple threads can access the AdcChannel
-        private object _syncLock = new object();
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private bool _disposed;
 
         internal AdcChannel(AdcController controller, int channelNumber)
         {
@@ -63,7 +70,7 @@ namespace Windows.Devices.Adc
             lock (_syncLock)
             {
                 // check if pin has been disposed
-                if (_disposedValue) { throw new ObjectDisposedException(); }
+                if (_disposed) { throw new ObjectDisposedException(); }
 
                 return NativeReadValue();
             }
@@ -72,15 +79,13 @@ namespace Windows.Devices.Adc
         private void ThowIfDisposed()
         {
             // check if pin has been disposed
-            if (_disposedValue)
+            if (_disposed)
             {
                 throw new ObjectDisposedException();
             }
         }
 
         #region IDisposable Support
-
-        private bool _disposedValue;
 
         private void Dispose(bool disposing)
         {
@@ -93,7 +98,7 @@ namespace Windows.Devices.Adc
 
                 }
 
-                _disposedValue = true;
+                _disposed = true;
             }
         }
 
@@ -104,7 +109,7 @@ namespace Windows.Devices.Adc
         {
             lock (_syncLock)
             {
-                if (!_disposedValue)
+                if (!_disposed)
                 {
                     Dispose(true);
                     GC.SuppressFinalize(this);

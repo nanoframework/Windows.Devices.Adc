@@ -38,7 +38,8 @@ variables:
   solution: '**/source/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  nugetPackageName: 'Windows.Devices.Adc'
+  classLibName: 'Windows.Devices.Adc'
+  nugetPackageName: 'nanoFramework.Windows.Devices.Adc'
   repoName: 'lib-Windows.Devices.Adc'
 
 steps:

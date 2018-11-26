@@ -47,6 +47,8 @@ steps:
 # step from template @ nf-tools repo
 # all build, update and publish steps
 - template: azure-pipelines-templates/class-lib-build.yml@templates  
+  parameters:
+    sourceFileName: 'win_dev_adc_native.cpp'
 
 # step from template @ nf-tools repo
 # report error

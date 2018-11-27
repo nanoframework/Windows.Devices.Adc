@@ -49,6 +49,7 @@ steps:
 - template: azure-pipelines-templates/class-lib-build.yml@templates  
   parameters:
     sourceFileName: 'win_dev_adc_native.cpp'
+    classLibName: $(nugetPackageName)
 
 # step from template @ nf-tools repo
 # report error

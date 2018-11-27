@@ -54,6 +54,7 @@
     <Compile Include="AdcChannel.cs" />
     <Compile Include="AdcChannelMode.cs" />
     <Compile Include="AdcController.cs" />
+    <Compile Include="AdcControllerManager.cs" />
     <Compile Include="IAdcChannel.cs" />
     <Compile Include="IAdcController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

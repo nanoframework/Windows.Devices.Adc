@@ -14,27 +14,66 @@ namespace Windows.Devices.Adc
     /// </summary>
     public sealed class AdcController : IAdcController
     {
-        private readonly int _deviceId;
+        // this is used as the lock object 
+        // a lock is required because multiple threads can access the AdcController
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private readonly object _syncLock = new object();
+
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private readonly int _controllerId;
+
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private AdcChannelMode _channelMode;
 
-        // need to store the ADC controllers that are open
-        internal static Hashtable s_deviceCollection = new Hashtable();
+        // backing field for DeviceCollection
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private Hashtable s_deviceCollection;
+
+        /// <summary>
+        /// Device collection associated with this <see cref="AdcController"/>.
+        /// </summary>
+        /// <remarks>
+        /// This collection is for internal use only.
+        /// </remarks>
+        internal Hashtable DeviceCollection
+        {
+            get
+            {
+                if (s_deviceCollection == null)
+                {
+                    lock (_syncLock)
+                    {
+                        if (s_deviceCollection == null)
+                        {
+                            s_deviceCollection = new Hashtable();
+                        }
+                    }
+                }
+
+                return s_deviceCollection;
+            }
+
+            set
+            {
+                s_deviceCollection = value;
+            }
+        }
 
         internal AdcController(string adcController)
         {
             // check if this device is already opened
-            if (!s_deviceCollection.Contains(adcController))
+            if (!AdcControllerManager.ControllersCollection.Contains(adcController))
             {
                 // the ADC id is an ASCII string with the format 'ADCn'
                 // need to grab 'n' from the string and convert that to the integer value from the ASCII code (do this by subtracting 48 from the char value)
-                _deviceId = adcController[3] - 48;
+                _controllerId = adcController[3] - '0';
 
                 // call native init to allow HAL/PAL inits related with ADC hardware
                 // this is also used to check if the requested ADC actually exists
                 NativeInit();
 
                 // add ADC controller to collection
-                s_deviceCollection.Add(adcController, this);
+                AdcControllerManager.ControllersCollection.Add(adcController, this);
             }
             else
             {
@@ -121,18 +160,26 @@ namespace Windows.Devices.Adc
         /// </returns>
         public static AdcController GetDefault()
         {
-            string controllers = GetDeviceSelector();
-            string[] devices = controllers.Split(',');
+            string controllersAqs = GetDeviceSelector();
+            string[] controllers = controllersAqs.Split(',');
 
-            if(devices.Length > 0)
+            if(controllers.Length > 0)
             {
-                if (s_deviceCollection.Contains(devices[0]))
-                {
-                    // this is already open
-                    return (AdcController)s_deviceCollection[devices[0]];
-                }
+                //////////////////////////////////////////////////////////////////
+                // note that, by design, the default controller is              //
+                // the first one in the collection returned from the native end //
+                //////////////////////////////////////////////////////////////////
 
-                return new AdcController(devices[0]);
+                if (AdcControllerManager.ControllersCollection.Contains(controllers[0]))
+                {
+                    // controller is already open
+                    return (AdcController)AdcControllerManager.ControllersCollection[controllers[0]];
+                }
+                else
+                {
+                    // there is no controller yet, create one
+                    return new AdcController(controllers[0]);
+                }
             }
 
             // the system has no ADC controller 

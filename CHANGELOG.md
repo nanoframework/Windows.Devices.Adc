@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.0.2-preview-020](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.0.2-preview-020) (2018-11-27)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.0.2-preview-009...v1.0.2-preview-020)
+
+**Implemented enhancements:**
+
+- Add lazy initialization to AdcController [\#31](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/31)
+
 ## [v1.0.2-preview-009](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.0.2-preview-009) (2018-11-19)
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.0.2-preview-004...v1.0.2-preview-009)
 

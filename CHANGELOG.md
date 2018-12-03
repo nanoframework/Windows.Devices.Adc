@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.0.2-preview-024](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.0.2-preview-024) (2018-12-03)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.0.2-preview-022...v1.0.2-preview-024)
+
+**Fixed bugs:**
+
+- Fix bug with controller search and indexing [\#37](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/37)
+
 ## [v1.0.2-preview-022](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.0.2-preview-022) (2018-11-30)
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.0.2-preview-020...v1.0.2-preview-022)
 

@@ -61,19 +61,20 @@ namespace Windows.Devices.Adc
 
         internal AdcController(string adcController)
         {
-            // check if this device is already opened
-            if (!AdcControllerManager.ControllersCollection.Contains(adcController))
-            {
-                // the ADC id is an ASCII string with the format 'ADCn'
-                // need to grab 'n' from the string and convert that to the integer value from the ASCII code (do this by subtracting 48 from the char value)
-                _controllerId = adcController[3] - '0';
+            // the ADC id is an ASCII string with the format 'ADCn'
+            // need to grab 'n' from the string and convert that to the integer value from the ASCII code (do this by subtracting 48 from the char value)
+            _controllerId = adcController[3] - '0';
 
+            // check if this device is already opened
+            if (!AdcControllerManager.ControllersCollection.Contains(_controllerId))
+            {
                 // call native init to allow HAL/PAL inits related with ADC hardware
                 // this is also used to check if the requested ADC actually exists
                 NativeInit();
 
-                // add ADC controller to collection
-                AdcControllerManager.ControllersCollection.Add(adcController, this);
+                // add controller to collection, with the ID as key 
+                // *** just the index number ***
+                AdcControllerManager.ControllersCollection.Add(_controllerId, this);
             }
             else
             {
@@ -165,15 +166,19 @@ namespace Windows.Devices.Adc
 
             if(controllers.Length > 0)
             {
+                // the ADC id is an ASCII string with the format 'ADCn'
+                // need to grab 'n' from the string and convert that to the integer value from the ASCII code (do this by subtracting 48 from the char value)
+                var controllerId = controllers[0][3] - '0';
+
                 //////////////////////////////////////////////////////////////////
                 // note that, by design, the default controller is              //
                 // the first one in the collection returned from the native end //
                 //////////////////////////////////////////////////////////////////
 
-                if (AdcControllerManager.ControllersCollection.Contains(controllers[0]))
+                if (AdcControllerManager.ControllersCollection.Contains(controllerId))
                 {
                     // controller is already open
-                    return (AdcController)AdcControllerManager.ControllersCollection[controllers[0]];
+                    return (AdcController)AdcControllerManager.ControllersCollection[controllerId];
                 }
                 else
                 {

@@ -6,6 +6,7 @@
 
 **Documentation and other chores:**
 
+- Bumps nanoFramework.CoreLibrary from 1.1.0 to 1.1.1 [\#42](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/42)
 - Merge back from release v1.1.0 [\#41](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/41)
 
 ## [v1.1.0](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.1.0) (2018-12-14)

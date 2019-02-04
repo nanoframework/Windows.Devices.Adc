@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.2...HEAD)
 
+**Implemented enhancements:**
+
+- Static field objects are now created on constructors. [\#45](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/45)
+
 **Documentation and other chores:**
 
 - Merge back from Release 1.1.2 [\#44](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/44)

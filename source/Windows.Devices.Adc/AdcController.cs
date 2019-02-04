@@ -17,7 +17,7 @@ namespace Windows.Devices.Adc
         // this is used as the lock object 
         // a lock is required because multiple threads can access the AdcController
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
-        private readonly object _syncLock = new object();
+        private object _syncLock;
 
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private readonly int _controllerId;
@@ -75,6 +75,8 @@ namespace Windows.Devices.Adc
                 // add controller to collection, with the ID as key 
                 // *** just the index number ***
                 AdcControllerManager.ControllersCollection.Add(_controllerId, this);
+
+                _syncLock = new object();
             }
             else
             {

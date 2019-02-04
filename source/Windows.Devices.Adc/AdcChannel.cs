@@ -16,7 +16,7 @@ namespace Windows.Devices.Adc
         // this is used as the lock object 
         // a lock is required because multiple threads can access the channel
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
-        private readonly object _syncLock = new object();
+        private readonly object _syncLock;
 
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private readonly int  _channelNumber;
@@ -31,6 +31,8 @@ namespace Windows.Devices.Adc
         {
             _adcController = controller;
             _channelNumber = channelNumber;
+
+            _syncLock = new object();
         }
 
         /// <summary>

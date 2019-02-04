@@ -1,11 +1,11 @@
 # Change Log
 
-## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/HEAD)
-
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.0...HEAD)
+## [v1.1.2](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.1.2) (2019-01-21)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.0...v1.1.2)
 
 **Documentation and other chores:**
 
+- Release 1.1.2 [\#43](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/43)
 - Bumps nanoFramework.CoreLibrary from 1.1.0 to 1.1.1 [\#42](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/42)
 - Merge back from release v1.1.0 [\#41](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/41)
 

@@ -1,5 +1,17 @@
 # Change Log
 
+## [v1.1.3](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.1.3) (2019-02-04)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.2...v1.1.3)
+
+**Implemented enhancements:**
+
+- Static field objects are now created on constructors. [\#45](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/45)
+
+**Documentation and other chores:**
+
+- Release v1.1.3 [\#46](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/46)
+- Merge back from Release 1.1.2 [\#44](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/44)
+
 ## [v1.1.2](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.1.2) (2019-01-21)
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.0...v1.1.2)
 

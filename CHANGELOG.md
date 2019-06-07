@@ -1,8 +1,7 @@
 # Change Log
 
-## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/HEAD)
-
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.3...HEAD)
+## [v1.2.0-preview-007](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.0-preview-007) (2019-04-23)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.3...v1.2.0-preview-007)
 
 **Documentation and other chores:**
 

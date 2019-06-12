@@ -49,7 +49,7 @@ steps:
 # all build, update and publish steps
 - template: azure-pipelines-templates/class-lib-build.yml@templates
   parameters:
-    soundCloudProject: 'nanoframework_lib-Windows.Devices.Adc'
+    sonarCloudProject: 'nanoframework_lib-Windows.Devices.Adc'
 
 # step from template @ nf-tools repo
 # report error

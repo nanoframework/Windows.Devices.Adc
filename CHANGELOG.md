@@ -2,7 +2,14 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.0-preview-007...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.1-preview.2...HEAD)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.2.4-preview.1 to 1.2.5-preview.1 [\#53](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/53)
+
+## [v1.2.1-preview.2](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.1-preview.2) (2019-06-12)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.0-preview-007...v1.2.1-preview.2)
 
 **Documentation and other chores:**
 

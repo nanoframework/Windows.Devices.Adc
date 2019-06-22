@@ -2,7 +2,14 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.1-preview.6...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.1-preview.9...HEAD)
+
+**Documentation and other chores:**
+
+- Work on native assembly declaration [\#55](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/55) [[Breaking-Change](https://github.com/nanoframework/lib-Windows.Devices.Adc/labels/Breaking-Change)]
+
+## [v1.2.1-preview.9](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.1-preview.9) (2019-06-20)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.1-preview.6...v1.2.1-preview.9)
 
 **Documentation and other chores:**
 

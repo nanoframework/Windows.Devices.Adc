@@ -6,6 +6,7 @@
 
 **Documentation and other chores:**
 
+- Bumps nanoFramework.CoreLibrary from 1.2.6-preview.1 to 1.2.6-preview.7 [\#57](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/57)
 - Work on native assembly declaration [\#55](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/55) [[Breaking-Change](https://github.com/nanoframework/lib-Windows.Devices.Adc/labels/Breaking-Change)]
 
 ## [v1.2.1-preview.9](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.1-preview.9) (2019-06-20)

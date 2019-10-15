@@ -3,6 +3,51 @@
 ## [v1.1.3](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.1.3) (2019-02-04)
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.2...v1.1.3)
 
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.2.6-preview.7 to 1.2.6-preview.16 [\#59](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/59)
+- Update readme.txt [\#58](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/58)
+
+## [v1.2.1-preview.14](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.1-preview.14) (2019-06-23)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.1-preview.9...v1.2.1-preview.14)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.2.6-preview.1 to 1.2.6-preview.7 [\#57](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/57)
+- Work on native assembly declaration [\#55](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/55) [[Breaking-Change](https://github.com/nanoframework/lib-Windows.Devices.Adc/labels/Breaking-Change)]
+
+## [v1.2.1-preview.9](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.1-preview.9) (2019-06-20)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.1-preview.6...v1.2.1-preview.9)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.2.5-preview.1 to 1.2.6-preview.1 [\#54](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/54)
+
+## [v1.2.1-preview.6](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.1-preview.6) (2019-06-12)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.1-preview.2...v1.2.1-preview.6)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.2.4-preview.1 to 1.2.5-preview.1 [\#53](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/53)
+
+## [v1.2.1-preview.2](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.1-preview.2) (2019-06-12)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.2.0-preview-007...v1.2.1-preview.2)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.2.1-preview-001 to 1.2.4-preview.1 [\#52](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/52)
+
+## [v1.2.0-preview-007](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.2.0-preview-007) (2019-04-23)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.3...v1.2.0-preview-007)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.2.0 to 1.2.1-preview-001 [\#48](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/48)
+- Bumps nanoFramework.CoreLibrary from 1.1.1 to 1.2.0 [\#47](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/47)
+
+## [v1.1.3](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.1.3) (2019-02-04)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.2...v1.1.3)
+
 **Implemented enhancements:**
 
 - Static field objects are now created on constructors. [\#45](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/45)

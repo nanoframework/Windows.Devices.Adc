@@ -177,10 +177,12 @@ namespace Windows.Devices.Adc
                 // the first one in the collection returned from the native end //
                 //////////////////////////////////////////////////////////////////
 
-                if (AdcControllerManager.ControllersCollection.Contains(controllerId))
+                var myController = FindController(controllerId);
+
+                if (myController != null)
                 {
                     // controller is already open
-                    return (AdcController)AdcControllerManager.ControllersCollection[controllerId];
+                    return myController;
                 }
                 else
                 {

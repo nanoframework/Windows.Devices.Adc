@@ -27,7 +27,7 @@ namespace Windows.Devices.Adc
 
         // backing field for DeviceCollection
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
-        private Hashtable s_deviceCollection;
+        private ArrayList s_deviceCollection;
 
         /// <summary>
         /// Device collection associated with this <see cref="AdcController"/>.
@@ -35,7 +35,7 @@ namespace Windows.Devices.Adc
         /// <remarks>
         /// This collection is for internal use only.
         /// </remarks>
-        internal Hashtable DeviceCollection
+        internal ArrayList DeviceCollection
         {
             get
             {
@@ -45,7 +45,7 @@ namespace Windows.Devices.Adc
                     {
                         if (s_deviceCollection == null)
                         {
-                            s_deviceCollection = new Hashtable();
+                            s_deviceCollection = new ArrayList();
                         }
                     }
                 }
@@ -66,7 +66,7 @@ namespace Windows.Devices.Adc
             _controllerId = adcController[3] - '0';
 
             // check if this device is already opened
-            if (!AdcControllerManager.ControllersCollection.Contains(_controllerId))
+            if (FindController(_controllerId) == null)
             {
                 // call native init to allow HAL/PAL inits related with ADC hardware
                 // this is also used to check if the requested ADC actually exists
@@ -74,7 +74,7 @@ namespace Windows.Devices.Adc
 
                 // add controller to collection, with the ID as key 
                 // *** just the index number ***
-                AdcControllerManager.ControllersCollection.Add(_controllerId, this);
+                AdcControllerManager.ControllersCollection.Add(this);
 
                 _syncLock = new object();
             }
@@ -177,10 +177,12 @@ namespace Windows.Devices.Adc
                 // the first one in the collection returned from the native end //
                 //////////////////////////////////////////////////////////////////
 
-                if (AdcControllerManager.ControllersCollection.Contains(controllerId))
+                var myController = FindController(controllerId);
+
+                if (myController != null)
                 {
                     // controller is already open
-                    return (AdcController)AdcControllerManager.ControllersCollection[controllerId];
+                    return myController;
                 }
                 else
                 {
@@ -223,8 +225,21 @@ namespace Windows.Devices.Adc
             return new AdcChannel(this, channelNumber);
         }
 
+        private static AdcController FindController(int index)
+        {
+            for (int i = 0; i < AdcControllerManager.ControllersCollection.Count; i++)
+            {
+                if (((AdcController)AdcControllerManager.ControllersCollection[i])._controllerId == index)
+                {
+                    return (AdcController)AdcControllerManager.ControllersCollection[i];
+                }
+            }
+
+            return null;
+        }
+
         #region Native Calls
- 
+
         /// <summary>
         /// Retrieves an string of all the ADC controllers on the system. 
         /// </summary>

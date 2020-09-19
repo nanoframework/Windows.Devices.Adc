@@ -2,7 +2,31 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.4.1-preview.13...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.5.0...HEAD)
+
+**Documentation and other chores:**
+
+- Update dependencies [\#84](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/84)
+
+## [v1.5.0](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.5.0) (2020-06-17)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.4.1...v1.5.0)
+
+**Documentation and other chores:**
+
+- Release release-v1.5.0 [\#83](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/83)
+
+## [v1.4.1](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.4.1) (2020-06-11)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.4.1-preview.15...v1.4.1)
+
+**Documentation and other chores:**
+
+- Release release-v1.4.1 [\#82](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/82)
+
+## [v1.4.1-preview.15](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.4.1-preview.15) (2020-06-11)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.4.1-preview.13...v1.4.1-preview.15)
 
 **Documentation and other chores:**
 

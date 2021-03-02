@@ -2,7 +2,16 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.5.1-preview.22...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.5.1-preview.24...HEAD)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.10.1-preview.9 to 1.10.1-preview.11 [\#94](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/94)
+- Update 2 nuget dependencies [\#93](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/93)
+
+## [v1.5.1-preview.24](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.5.1-preview.24) (2021-01-06)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.5.1-preview.22...v1.5.1-preview.24)
 
 **Documentation and other chores:**
 
@@ -315,6 +324,10 @@
 
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.1.0...v1.1.2)
 
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.1.0 to 1.1.1 [\#42](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/42)
+
 ## [v1.1.0](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.1.0) (2018-12-14)
 
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.0.2-preview-024...v1.1.0)
@@ -353,7 +366,6 @@
 
 **Documentation and other chores:**
 
-- Bumps nanoFramework.CoreLibrary from 1.1.0 to 1.1.1 [\#42](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/42)
 - Bumps nanoFramework.CoreLibrary from 1.0.6-preview-001 to 1.0.6-preview-010 [\#29](https://github.com/nanoframework/lib-Windows.Devices.Adc/pull/29)
 
 ## [v1.0.2-preview-004](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.0.2-preview-004) (2018-11-08)

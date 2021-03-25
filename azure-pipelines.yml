@@ -26,7 +26,7 @@ variables:
   buildConfiguration: 'Release'
   classLibName: 'Windows.Devices.Adc'
   nugetPackageName: 'nanoFramework.Windows.Devices.Adc'
-  repoName: 'lib-Windows.Devices.Adc'
+  repoName: 'Windows.Devices.Adc'
 
 steps:
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/HEAD)
+## [v1.4.1](https://github.com/nanoframework/lib-Windows.Devices.Adc/tree/v1.4.1) (2020-06-11)
 
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Devices.Adc/compare/v1.5.1-preview.29...HEAD)
 

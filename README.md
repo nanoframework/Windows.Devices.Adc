@@ -12,8 +12,7 @@
 
 | Component | Build Status | NuGet Package |
 |:-|---|---|
-| Windows.Devices.Adc | [![Build Status](https://dev.azure.com/nanoframework/Windows.Devices.Adc/_apis/build/status/nanoframework.lib-Windows.Devices.Adc?branchName=develop)](https://dev.azure.com/nanoframework/Windows.Devices.Adc/_build/latest?definitionId=5?branchName=master) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.Windows.Devices.Adc.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Windows.Devices.Adc/) |
-| Windows.Devices.Adc (preview) | [![Build Status](https://dev.azure.com/nanoframework/Windows.Devices.Adc/_apis/build/status/nanoframework.lib-Windows.Devices.Adc?branchName=develop)](https://dev.azure.com/nanoframework/Windows.Devices.Adc/_build/latest?definitionId=5?branchName=develop) | [![](https://badgen.net/badge/NuGet/preview/D7B023?icon=https://simpleicons.now.sh/azuredevops/fff)](https://dev.azure.com/nanoframework/feed/_packaging?_a=package&feed=sandbox&package=nanoFramework.Windows.Devices.Adc&protocolType=NuGet&view=overview) |
+| Windows.Devices.Adc | [![Build Status](https://dev.azure.com/nanoframework/Windows.Devices.Adc/_apis/build/status/Windows.Devices.Adc?repoName=nanoframework%2FWindows.Devices.Adc&branchName=main)](https://dev.azure.com/nanoframework/Windows.Devices.Adc/_build/latest?definitionId=5&repoName=nanoframework%2FWindows.Devices.Adc&branchName=main) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.Windows.Devices.Adc.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Windows.Devices.Adc/) |
 
 ## Feedback and documentation
 
